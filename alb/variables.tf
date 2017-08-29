@@ -22,6 +22,11 @@ variable "alb_security_groups" {
   type        = "list"
 }
 
+variable "alb_ssl_policy" {
+  description = "Default SSL policy for SSL listener"
+  default     = "ELBSecurityPolicy-2016-08"
+}
+
 variable "aws_region" {
   description = "AWS region to use."
 }
