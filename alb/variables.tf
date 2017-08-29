@@ -54,14 +54,6 @@ variable "health_check_path" {
   default     = "/"
 }
 
-variable "log_bucket" {
-  description = "S3 bucket for storing ALB access logs."
-}
-
-variable "log_prefix" {
-  description = "S3 prefix within the log_bucket under which logs are stored."
-}
-
 variable "principle_account_id" {
   description = "A map of ELB/ALB root account numbers used to set up logging."
 
