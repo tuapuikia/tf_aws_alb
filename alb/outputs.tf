@@ -10,6 +10,14 @@ output "alb_zone_id" {
   value = "${aws_alb.main.zone_id}"
 }
 
+output "alb_listener_http_arn" {
+  value = "${aws_listener.front_end_http.arn}"
+}
+
+output "alb_listener_https_arn" {
+  value = "${aws_listener.front_end_https.arn}"
+}
+
 output "target_group_arn" {
   value = "${aws_alb_target_group.target_group.arn}"
 }
