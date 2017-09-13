@@ -19,7 +19,14 @@ output "alb_listener_https_arn" {
 }
 
 output "target_group_arn" {
-  value = "${aws_alb_target_group.target_group.arn}"
+	# The join() hack is required because currently the ternary operator
+	# evaluates the expressions on both branches of the condition before
+	# returning a value. When providing and external VPC, the template VPC
+	# resource gets a count of zero which triggers an evaluation error.
+	#
+	# This is tracked upstream: https://github.com/hashicorp/hil/issues/50
+	#
+    value = "${chomp(var.alb_default_target_group_name) != "" ? join(" ", data.aws_alb_target_group.existing_target_group.*.arn) : join(" ", aws_alb_target_group.target_group.*.arn)}"
 }
 
 output "principle_account_id" {

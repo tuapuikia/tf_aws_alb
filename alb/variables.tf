@@ -27,6 +27,11 @@ variable "alb_ssl_policy" {
   default     = "ELBSecurityPolicy-2016-08"
 }
 
+variable "alb_default_target_group_name" {
+  description = "Name of an existing target group to use as default for the listener. WARNING: a target group can be used by only one ALB at the same time. If empty, will create a new target group"
+  default     = ""
+}
+
 variable "aws_region" {
   description = "AWS region to use."
 }

@@ -35,6 +35,13 @@ resource "aws_alb_target_group" "target_group" {
   }
 
   tags = "${merge(var.tags, map("Name", format("%s-tg", var.alb_name)))}"
+
+  count = "${chomp(var.alb_default_target_group_name) != "" ? 0 : 1}"
+}
+
+data "aws_alb_target_group" "existing_target_group" {
+  name  = "${chomp(var.alb_default_target_group_name)}"
+  count = "${chomp(var.alb_default_target_group_name) != "" ? 1 : 0}"
 }
 
 resource "aws_alb_listener" "front_end_http" {
@@ -43,7 +50,14 @@ resource "aws_alb_listener" "front_end_http" {
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = "${aws_alb_target_group.target_group.id}"
+	# The join() hack is required because currently the ternary operator
+	# evaluates the expressions on both branches of the condition before
+	# returning a value. When providing and external VPC, the template VPC
+	# resource gets a count of zero which triggers an evaluation error.
+	#
+	# This is tracked upstream: https://github.com/hashicorp/hil/issues/50
+	#
+    target_group_arn = "${chomp(var.alb_default_target_group_name) != "" ? join(" ", data.aws_alb_target_group.existing_target_group.*.arn) : join(" ", aws_alb_target_group.target_group.*.arn)}"
     type             = "forward"
   }
 
@@ -58,7 +72,14 @@ resource "aws_alb_listener" "front_end_https" {
   ssl_policy        = "${var.alb_ssl_policy}"
 
   default_action {
-    target_group_arn = "${aws_alb_target_group.target_group.id}"
+	# The join() hack is required because currently the ternary operator
+	# evaluates the expressions on both branches of the condition before
+	# returning a value. When providing and external VPC, the template VPC
+	# resource gets a count of zero which triggers an evaluation error.
+	#
+	# This is tracked upstream: https://github.com/hashicorp/hil/issues/50
+	#
+    target_group_arn = "${chomp(var.alb_default_target_group_name) != "" ? join(" ", data.aws_alb_target_group.existing_target_group.*.arn) : join(" ", aws_alb_target_group.target_group.*.arn)}"
     type             = "forward"
   }
 

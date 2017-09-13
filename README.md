@@ -28,6 +28,7 @@ For an example of using ALB with ECS look no further than the [hashicorp example
 * `alb_name` - Name of the ALB as it appears in the AWS console. (Optional; default: my-alb)
 * `alb_protocols` - A comma delimited list of protocols the ALB will accept for incoming connections. Only HTTP and HTTPS are supported. (Optional; default: HTTPS)
 * `alb_security_groups` - A comma delimited list of security groups to attach to the ALB. (Required)
+*  `alb_default_target_group_name` -  Name of an existing target group to use as default for the listener. WARNING: a target group can be used by only one ALB at the same time. (Optional; default: create a new target group)
 * `aws_region` - Region to deploy our resources. (Required)
 * `aws_account_id` - The AWS account ID. (Required)
 * `backend_port` - Port on which the backing instances serve traffic. (Optional; default: 80)
