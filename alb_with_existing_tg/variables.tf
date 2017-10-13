@@ -28,8 +28,7 @@ variable "alb_ssl_policy" {
 }
 
 variable "alb_default_target_group_name" {
-  description = "Name of an existing target group to use as default for the listener. WARNING: a target group can be used by only one ALB at the same time. If empty, will create a new target group"
-  default     = ""
+  description = "Name of an existing target group to use as default for the listener. WARNING: a target group can be used by only one ALB at the same time."
 }
 
 variable "aws_region" {
