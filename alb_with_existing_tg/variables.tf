@@ -28,8 +28,7 @@ variable "alb_ssl_policy" {
 }
 
 variable "alb_default_target_group_name" {
-  description = "Name of an existing target group to use as default for the listener. WARNING: a target group can be used by only one ALB at the same time. If empty, will create a new target group"
-  default     = ""
+  description = "Name of an existing target group to use as default for the listener. WARNING: a target group can be used by only one ALB at the same time."
 }
 
 variable "aws_region" {
@@ -53,11 +52,6 @@ variable "certificate_arn" {
 variable "cookie_duration" {
   description = "If load balancer connection stickiness is desired, set this to the duration that cookie should be valid. If no stickiness is wanted, leave it blank. e.g.: 300"
   default     = "1"
-}
-
-variable "idle_timeout" {
-  description = "(Optional) The time in seconds that the connection is allowed to be idle. Default: 60."
-  default     = "60"
 }
 
 variable "health_check_path" {
