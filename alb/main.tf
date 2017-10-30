@@ -8,6 +8,7 @@ resource "aws_alb" "main" {
   subnets         = ["${var.subnets}"]
   security_groups = ["${var.alb_security_groups}"]
   internal        = "${var.alb_is_internal}"
+  idle_timeout    = "${var.idle_timeout}"
 
   tags = "${merge(var.tags, map("Name", format("%s", var.alb_name)))}"
 }

@@ -59,6 +59,11 @@ variable "cookie_duration" {
   default     = "1"
 }
 
+variable "idle_timeout" {
+  description = "(Optional) The time in seconds that the connection is allowed to be idle. Default: 60."
+  default     = "60"
+}
+
 variable "health_check_path" {
   description = "The URL the ELB should use for health checks. e.g. /health"
   default     = "/"
