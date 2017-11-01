@@ -60,7 +60,7 @@ variable "cookie_duration" {
   default     = "1"
 }
 
-variable "s3_force_delete" {
+variable "s3_force_destroy" {
   description = "If set to true and if the log bucket already exists, it will be destroyed and recreated."
   default     = false
 }
