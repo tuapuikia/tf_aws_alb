@@ -17,6 +17,8 @@ resource "aws_alb" "main" {
   }
 
   tags = "${merge(var.tags, map("Name", format("%s", var.alb_name)))}"
+
+  depends_on = ["aws_s3_bucket.log_bucket"]
 }
 
 data "aws_iam_policy_document" "bucket_policy" {
