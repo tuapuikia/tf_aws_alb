@@ -13,7 +13,7 @@ resource "aws_alb" "main" {
   access_logs {
     bucket = "${var.log_bucket}"
     prefix = "${var.log_prefix}"
-    enable = "${var.log_bucket != ""}"
+    enabled = "${var.log_bucket != ""}"
   }
 
   tags = "${merge(var.tags, map("Name", format("%s", var.alb_name)))}"
