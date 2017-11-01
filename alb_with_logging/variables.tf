@@ -46,6 +46,11 @@ variable "backend_protocol" {
   default     = "HTTP"
 }
 
+variable "bucket_policy" {
+  description = "A custom S3 bucket policy to apply to the log bucket. If not provided, a minimal policy will be generated from other variables."
+  default     = ""
+}
+
 variable "certificate_arn" {
   description = "The ARN of the SSL Certificate. e.g. 'arn:aws:iam::123456789012:server-certificate/ProdServerCert'"
 }
@@ -53,6 +58,11 @@ variable "certificate_arn" {
 variable "cookie_duration" {
   description = "If load balancer connection stickiness is desired, set this to the duration that cookie should be valid. If no stickiness is wanted, leave it blank. e.g.: 300"
   default     = "1"
+}
+
+variable "s3_force_delete" {
+  description = "If set to true and if the log bucket already exists, it will be destroyed and recreated."
+  default     = false
 }
 
 variable "idle_timeout" {
