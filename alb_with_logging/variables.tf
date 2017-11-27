@@ -75,6 +75,11 @@ variable "health_check_path" {
   default     = "/"
 }
 
+variable "matcher" {
+  description = "The HTTP codes to use when checking for a successful response from a target. Defaults to 200."
+  default     = "200"
+}
+
 variable "log_bucket" {
   description = "S3 bucket for storing ALB access logs."
   default     = ""
