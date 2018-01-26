@@ -75,6 +75,11 @@ variable "health_check_path" {
   default     = "/"
 }
 
+variable "health_check_port" {
+  description = "The port to use to connect with target for health check"
+  default     = "traffic-port"
+}
+
 variable "matcher" {
   description = "The HTTP codes to use when checking for a successful response from a target. Defaults to 200."
   default     = "200"

@@ -65,6 +65,11 @@ variable "health_check_path" {
   default     = "/"
 }
 
+variable "health_check_port" {
+  description = "The port to use to connect with target for health check"
+  default     = "traffic-port"
+}
+
 variable "principle_account_id" {
   description = "A map of ELB/ALB root account numbers used to set up logging."
 
