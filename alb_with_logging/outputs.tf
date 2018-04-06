@@ -11,11 +11,11 @@ output "alb_zone_id" {
 }
 
 output "alb_listener_http_arn" {
-  value = "${aws_alb_listener.front_end_http.arn}"
+  value = "${aws_alb_listener.front_end_http.*.arn}"
 }
 
 output "alb_listener_https_arn" {
-  value = "${aws_alb_listener.front_end_https.arn}"
+  value = "${aws_alb_listener.front_end_https.*.arn}"
 }
 
 output "target_group_arn" {
