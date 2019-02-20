@@ -60,6 +60,11 @@ variable "idle_timeout" {
   default     = "60"
 }
 
+variable "health_check_interval" {
+  description = "(Optional) The approximate amount of time, in seconds, between health checks of an individual target. Minimum value 5 seconds, Maximum value 300 seconds. Default 30 seconds."
+  default     = "30"
+}
+
 variable "health_check_path" {
   description = "The URL the ELB should use for health checks. e.g. /health"
   default     = "/"
@@ -68,6 +73,26 @@ variable "health_check_path" {
 variable "health_check_port" {
   description = "The port to use to connect with target for health check"
   default     = "traffic-port"
+}
+
+variable "health_check_healthy_threshold" {
+  description = "The number of consecutive health checks successes required before considering an unhealthy target healthy. Defaults to 3."
+  default     = "3"
+}
+
+variable "health_check_unhealthy_threshold" {
+  description = "The number of consecutive health check failures required before considering the target unhealthy . For Network Load Balancers, this value must be the same as the healthy_threshold. Defaults to 3."
+  default     = "3"
+}
+
+variable "health_check_timeout" {
+  description = "(Optional) The amount of time, in seconds, during which no response means a failed health check. For Application Load Balancers, the range is 2 to 60 seconds and the default is 5 seconds. For Network Load Balancers, you cannot set a custom value, and the default is 10 seconds for TCP and HTTPS health checks and 6 seconds for HTTP health checks."
+  default     = "5"
+}
+
+variable "matcher" {
+  description = "The HTTP codes to use when checking for a successful response from a target. Defaults to 200."
+  default     = "200"
 }
 
 variable "principle_account_id" {

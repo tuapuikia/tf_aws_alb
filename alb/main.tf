@@ -20,13 +20,14 @@ resource "aws_alb_target_group" "target_group" {
   vpc_id   = "${var.vpc_id}"
 
   health_check {
-    interval            = 30
+    interval            = "${var.health_check_interval}"
     path                = "${var.health_check_path}"
     port                = "${var.health_check_port}"
-    healthy_threshold   = 3
-    unhealthy_threshold = 3
-    timeout             = 5
+    healthy_threshold   = "${var.health_check_healthy_threshold}"
+    unhealthy_threshold = "${var.health_check_unhealthy_threshold}"
+    timeout             = "${var.health_check_timeout}"
     protocol            = "${var.backend_protocol}"
+    matcher             = "${var.matcher}"
   }
 
   stickiness {
